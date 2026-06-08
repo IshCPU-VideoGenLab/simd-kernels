@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, backend: avx2,   name: "x86-64 / AVX2" }
+          - { os: macos-latest,  backend: neon,   name: "ARM64 / NEON" }
+          - { os: ubuntu-latest, backend: scalar, name: "Scalar fallback" }
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Environment
+        run: |
+          echo "Runner arch: $(uname -msr)"
+          ${CC:-cc} --version | head -1
+          # Show which SIMD macros the native compiler exposes on this runner
+          echo | ${CC:-cc} -dM -E -march=native - 2>/dev/null \
+            | grep -iE '__AVX2__|__ARM_NEON' || true
+
+      - name: Build (BACKEND=${{ matrix.backend }})
+        run: make BACKEND=${{ matrix.backend }}
+
+      - name: Run tests (BACKEND=${{ matrix.backend }})
+        run: make BACKEND=${{ matrix.backend }} test

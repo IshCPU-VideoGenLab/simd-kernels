@@ -4,6 +4,8 @@
 
 # simd-kernels
 
+[![CI](https://github.com/IshCPU-VideoGenLab/simd-kernels/actions/workflows/ci.yml/badge.svg)](https://github.com/IshCPU-VideoGenLab/simd-kernels/actions/workflows/ci.yml)
+
 **Portable SIMD kernels for binary neural network inference — one API, runs on x86 (AVX2) and ARM (NEON).**
 
 Part of [IshCPU-VideoGenLab](https://github.com/IshCPU-VideoGenLab).
