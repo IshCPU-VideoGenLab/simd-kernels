@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+venv/
+.DS_Store
+results/*
+!results/.gitkeep
+*.o
+*.so
+*.dylib
+*.dll
+*.log
