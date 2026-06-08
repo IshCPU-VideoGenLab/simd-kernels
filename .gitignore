@@ -12,3 +12,7 @@ results/*
 *.dylib
 *.dll
 *.log
+
+# Virtual environments (any name)
+.venv*/
+*venv/
