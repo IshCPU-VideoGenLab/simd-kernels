@@ -68,17 +68,19 @@ The M4 has native popcount. We don't need the nibble lookup table hack.
 
 ## Hardware Targets
 
-### Primary Development: Apple M4 (MacBook Air)
+### Primary: Apple M4 (MacBook Air) — development + benchmarking
 - ARM64 with NEON, AMX
 - 10 CPU cores (4 performance + 6 efficiency)
 - 16-24 GB unified memory
 - Compile: `clang -O3 -march=native` (NEON auto-detected)
 
-### Paper Benchmark: Intel Pentium Gold 7505
-- x86-64 with AVX2 (no AVX-512)
-- 2 cores / 4 threads, 3.5 GHz
-- 16 GB DDR4
-- Compile: `gcc -mavx2 -O3 -march=native`
+### Supported (CI-verified): commodity x86 with AVX2
+- x86-64 with AVX2 (no AVX-512 assumed) — any modern Intel/AMD CPU
+- Verified on every push by GitHub Actions (`make BACKEND=avx2 test`)
+- Compile: `gcc -mavx2 -mfma -O3`
+
+### Origin / proof-of-concept (retired): Intel Pentium Gold 7505
+- x86-64 / AVX2, 2C/4T, 3.5 GHz, 16 GB DDR4 — the weakest-hardware case
 
 ### Fallback: Any CPU
 - Pure C scalar implementation
