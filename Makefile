@@ -1,5 +1,5 @@
 CC ?= cc
-CFLAGS_COMMON = -O3 -Wall -Wextra -std=c11 -fPIC -shared
+CFLAGS_COMMON = -O3 -Wall -Wextra -std=c11 -fPIC -shared -pthread
 INCLUDES = -Icsrc
 SRCDIR = csrc
 BUILDDIR = build
@@ -68,7 +68,7 @@ test: $(BUILDDIR)/test_kernels
 	./$(BUILDDIR)/test_kernels
 
 $(BUILDDIR)/test_kernels: $(TEST_SRC) $(SOURCES) | $(BUILDDIR)
-	$(CC) -O3 -Wall -Wextra -std=c11 $(CFLAGS_ARCH) $(INCLUDES) \
+	$(CC) -O3 -Wall -Wextra -std=c11 -pthread $(CFLAGS_ARCH) $(INCLUDES) \
 		-o $@ $(TEST_SRC) \
 		$(SRCDIR)/binary_gemm.c \
 		$(SRCDIR)/backend_scalar.c \
