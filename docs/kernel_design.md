@@ -49,7 +49,7 @@ ARM's `vcntq_u8` does in 1 instruction what AVX2 needs 4 for.
 
 ### Performance Characteristics
 
-| Aspect | AVX2 (Pentium Gold) | NEON (M4) |
+| Aspect | AVX2 (x86) | NEON (M4) |
 |--------|-------------------|-----------|
 | Vector width | 256 bits | 128 bits |
 | Bits per XOR | 256 | 128 |

@@ -5,10 +5,10 @@
 ## Milestone 1: Build System & Detection
 - [ ] Makefile auto-detects x86 vs ARM and selects backend
 - [ ] `check_simd.py` reports detected SIMD capabilities
-- [ ] Library compiles on M4 MacBook (NEON)
-- [ ] Library compiles on Pentium Gold (AVX2)
-- [ ] Library compiles with `BACKEND=scalar` on any platform
-- [ ] `make test` passes on all platforms
+- [x] Library compiles on M4 MacBook (NEON)
+- [x] Library compiles & passes CI on commodity x86 (AVX2)
+- [x] Library compiles with `BACKEND=scalar` on any platform
+- [x] `make test` passes on all platforms (CI: AVX2 + NEON + scalar)
 
 ## Milestone 2: Binary GEMM
 - [ ] NEON backend: `veorq_u8` + `vcntq_u8` binary GEMM
@@ -17,7 +17,7 @@
 - [ ] C test: NEON/AVX2 output matches scalar exactly
 - [ ] Python binding via ctypes
 - [ ] Python test: output matches PyTorch `F.linear` on binary weights
-- [ ] Benchmark: GOPS at various matrix sizes on M4 and Pentium Gold
+- [ ] Benchmark: GOPS at various matrix sizes on M4 (NEON) and commodity x86 (AVX2)
 
 ## Milestone 3: SSM Scan
 - [ ] NEON backend: `vfmaq_f32` vectorized state update
